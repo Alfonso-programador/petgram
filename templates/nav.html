@@ -1,0 +1,48 @@
+{% load static%}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{%url 'posts:feed'%}"><img src="{% static 'img/logo.png'%}" style="width:80px;height:70px;"></a>
+       
+        <div class="navbar navbar navbar-expand-lg" id="navbarColor02">
+       
+             <div>
+                <form id="search-form" autocomplete="off">
+                    {% csrf_token %}
+                    <input class="form-control me-sm-2" type="text" id="search-input" placeholder="Search" style="position: absolute;left: -430%;width:300px;top:20px;" data-url="users:search"></input>
+                    <div id="results-box" class="results-card not-visible">
+                     
+                    </div>
+                </form>
+            </div>
+        
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        {%if user.picture %}
+                        <a href="{%url 'users:profile'%}" style="position:static;">
+                            <img src="http://127.0.0.1:8000/media/{{ user.picture }}" class="rounded-circle" alt="Default user image" style="width:50px;height:50px;">
+                        </a>
+                        {%else%}
+                        <a href="{%url 'users:profile'%}" style="position:static;">
+                            <img src="{% static 'img/default_user.png'%}" class="rounded-circle" alt="Default user image" style="width:40px;height:40px;">
+                        </a>
+                        {%endif%}
+                    </a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a href="{%url 'posts:new'%}">
+                        <i class="fa fa-plus mt-4" style="font-size: 2em;margin-left:20px;margin-right:20px;"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{%url 'users:logout'%}">
+                        <i class="bi bi-box-arrow-right" style="font-size: 2em;position:relative;top:13px;"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+ <script src="{%static 'js/main.js'%}"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

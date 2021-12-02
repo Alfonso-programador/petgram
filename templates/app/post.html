@@ -1,0 +1,47 @@
+{% load static%}
+<style type="text/css">
+    .heart{
+     background: none;
+    color: #2ef8a0;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    }
+</style>
+{%if posts%}
+    {%for post in posts%}
+<div class="card mb-3" style="z-index:1;">
+    <h3 class="card-header">
+       <a href="{%url "posts:others_profile" other_user.email%}">
+              <img src="{{other_user.picture.url}}" class="rounded-circle" alt="Default user image" style="width:40px;height:40px; float: left;
+  margin-right: 15px;">
+            <aside><h6 style="margin-top:10px;">{{other_user.username}}</h6></aside>
+       </a>
+    </h3>
+    <img src="{{post.image.url}}" class="img-fluid rounded mw-100 mh-100">
+    <div class="card-body">
+        <p class="card-text">{{post.description}}</p>
+    </div>
+    <div class="card-body">
+        
+        <form method="POST" id="myform">
+             {% csrf_token %}
+            <button type="submit" name="like" value="{{post.id}}" class="card-link heart" sty><i class="bi bi-heart"></i></button>
+        </form>
+   
+        <h1></h1>
+    </div>
+</div>
+    {%endfor%}
+
+{% else%}
+<div class="container">
+    <center>
+    <h1 style="margin-top:10%">No recent posts found :(</h1>
+    <img style="padding-bottom:100px;" src="{%static 'img/triste_perro.gif' %}">
+    </center>
+</div>
+
+{%endif%}
+

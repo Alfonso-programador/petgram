@@ -1,0 +1,42 @@
+{% extends './base.html'%}
+{% block feed%}
+<style type="text/css">
+input[type="file"] {
+    display: block;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+</style>
+<div class="d-flex justify-content-center">
+    <div class="text-center">
+        <div class="card border-info mb-3" style="width:25rem;height:25rem;">
+            <div class="card-header"><i>New Post</i></div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                <div class="form-group">
+                    <label class="col-form-label col-form-label-lg mt-2" for="inputLarge" style="margin-right:20px;">Image of Your Pet:</label>
+                    <br>
+                    <input type="file" accept="image/*" class="form-control" name="image"required/>
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea" class="form-label mt-4">Description</label>
+                    <textarea class="form-control" id="exampleTextarea" rows="3" style="  resize: none;" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="d-grid gap-2 mt-4 ">
+                        <button class="btn btn-lg btn-primary" type="submit">Publish</button>
+                    </div>
+                </div>
+                </form>
+              
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

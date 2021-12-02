@@ -1,0 +1,58 @@
+{% extends '../base.html'%}
+{% load static%}
+
+{%block title%}
+
+<title>SignUp</title>
+
+{% endblock %}
+
+{%block content%}
+      {% if form.email.errors %}
+        <p class="alert alert-danger">
+            Email is already in use
+        </p>
+      {% endif%}
+      {% if form.username.errors %}
+        <p class="alert alert-danger">
+            Username is already in use
+        </p>
+      {% endif%}
+<div class="card border-primary  mb-5" style="width:25rem;height:32rem;">
+              
+                    <div class="card-header"><b><i>Petgram</i></b></div>
+                    <div class="card-body">
+                    	<div class="form-group">
+                    			 <img src="{% static 'img/logo.png'%}" style="width:30%;height:30%;">
+                    			 	<p class="card-text"> <b>Join Petgram!</b> Sign up to view photos of pets from around the world.</p>
+                    	</div>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                            <input type="email" class="form-control mb-2 mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email addres" name="email" required>
+                        </div>
+                   
+                       <div class="form-group">
+                            <input type="text" class="form-control mb-2 mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First name" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control mb-2 mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last name" name="last_name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control mb-2 mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control mb-2 mt-2" id="exampleInputPassword1" placeholder="Password" name="password" minlength="6" >
+                        </div>
+
+                        <div class="d-grid gap-2 mt-3 mb-2">
+                            <button class="btn btn-lg btn-primary" type="submit">Sign up</button>
+                        </div>
+                        <div class="mt-4">
+                            <small class="form-text text-muted">Do you already have an account? <a href="{% url 'users:login'%}">Login!</a></small>
+                        </div>
+                    </div>
+                        </form>
+                    	
+                </div>
+{%endblock%}

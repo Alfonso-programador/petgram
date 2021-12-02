@@ -1,0 +1,55 @@
+{% extends '../app/base.html'%}
+{% load static%}
+{%block feed%}
+<div class="container">
+	<div class="row" style=" margin-left: 50px;">
+		<div class="col-3">
+			 {%if user.picture%}
+			  <img src="http://127.0.0.1:8000/media/{{ user.picture }}" class="rounded-circle" alt="Default user image" style="width:200px;height:200px;">
+			 	{%else%}
+			 	 <img src="{% static 'img/default_user.png'%}" class="rounded-circle" alt="Default user image" style="width:200px;height:200px;">
+			 {%endif%}
+		</div>
+		<div class="col-sm mt-5">
+			<h4>{{user.username}}</h4>
+			
+			<label style="margin-right:20px;"><b>{{posts.count}}</b> publicaciones</label>
+			<label style="margin-right:20px;"><b>{{followed.count}}</b> seguidores</label>
+			<label><b>{{followers.count}}</b> seguidos</label>
+			
+		<label class="mt-3">{{user.first_name}} {{user.last_name}}</label>
+			
+		</div>
+		<div class="col-sm mt-5">	
+			{%if is_me%}
+			<button type="button" class="btn btn-outline-info">Edit profile</button>
+			{%else%}
+			<form method="POST">
+				{% csrf_token %}
+				{%if followed%}
+				<button type="submit" class="btn btn-outline-info" disabled="true">Following</button >
+				{%else%}
+				<button type="submit" class="btn btn-outline-info">Following</button>
+				{%endif%}
+				
+			</form>
+			
+			{%endif%}
+		</div>
+	</div>
+	<hr class="my-4" style=" border: 1px solid black;">
+	<div class="container-fluid">
+		<div class="row" style="margin-left:10px;">
+			{% for post in posts%}
+			<div class="col mt-3">
+				<img src="http://127.0.0.1:8000/media/{{post.image}}" width="300" height="300">
+			</div>
+			{%endfor%}
+		
+		</div>
+
+	</div>
+</div>
+<script>
+
+{%endblock feed%}

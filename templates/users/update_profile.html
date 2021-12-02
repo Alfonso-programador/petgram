@@ -1,0 +1,43 @@
+{% extends '../app/base.html'%}
+{% load static%}
+{%block feed%}
+ <div class="d-flex justify-content-center">
+    <div class="text-center">
+        <div class="card border-info mb-3" style="width:25rem;height:38rem;">
+            <div class="card-header"><i>Update Profile</i></div>
+            <div class="card-body">
+                <form method="POST" id="myform"  enctype="multipart/form-data">
+                     {% csrf_token %}
+                <div class="form-group">
+                    <p class="card-text"> Please update your profile to continue.</p>
+                    {%if picture%}
+                     <img src="http://127.0.0.1:8000/media/{{ picture }}" class="rounded-circle" alt="Default user image" style="width:80px;height:80px;">
+                     {%else%}
+                       <img src="{% static 'img/default_user.png'%}" class="rounded-circle" alt="Default user image" style="width:80px;height:80px;">
+                     {%endif%}
+                     <br>
+                      <label class="col-form-label col-form-label-lg mt-4" for="inputLarge" >Profile picture</label>
+                    <input type="file" accept="image/*" class="form-control" required name="picture"/>
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea" class="form-label mt-4">Biography</label>
+                   <textarea class="form-control" id="biography" rows="2" style="  resize: none;" name="biography">{{biography}}</textarea> 
+                   
+               
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea" class="form-label mt-4">Phone number</label>
+                    <input class="form-control form-control-lg" type="text" id="inputLarge" name="phone" name="phone" value="{{phone_number}}" required>
+                </div>
+                <div class="form-group">
+                    <div class="d-grid gap-2 mt-4 ">
+                        <button class="btn btn-lg btn-primary" type="submit">Update</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<h1>{{MEDIA_VAR}}</h1>
+{%endblock%}
